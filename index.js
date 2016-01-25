@@ -19,7 +19,7 @@ module.exports = class ModelsHook extends Hook {
   initialize() {
     let modelsPath = path.join(this.proton.app.path, '/models')
     let models = require('require-all')(modelsPath)
-    _.forEach(models, Model => new Model(this.proton))
+    this.proton.app.models = models
   }
 
 }
