@@ -1,6 +1,6 @@
 {
   "name": "proton-hook-models",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "lodash": "^4.0.0",
-    "proton-hook": "^1.0.0"
+    "proton-hook": "^1.0.0",
+    "require-all": "^2.0.0"
   }
 }
