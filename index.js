@@ -37,6 +37,7 @@ class ModelsQuark extends Quark {
   initialize() {
     _.forEach(this._models, (Model, fileName) => {
       const model = new Model(this.proton)
+      this.proton.app.models[model.name] = model
       model.fileName = fileName
       return model
     })
