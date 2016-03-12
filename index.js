@@ -37,9 +37,6 @@ class ModelsQuark extends Quark {
   initialize() {
     _.forEach(this._models, (Model, fileName) => {
       const model = new Model(this.proton)
-      if (!(model instanceof BaseModel)) {
-        throw new Error('This class must exteds from the BaseModel class.')
-      }
       model.fileName = fileName
       return model
     })
