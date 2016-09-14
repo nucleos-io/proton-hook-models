@@ -26,6 +26,7 @@ class ModelsQuark extends Quark {
   configure() {
     if (!this.proton.app.models)
       this.proton.app.models = {}
+    return Promise.resolve()
   }
 
   /**
@@ -37,10 +38,12 @@ class ModelsQuark extends Quark {
   initialize() {
     _.forEach(this._models, (Model, fileName) => {
       const model = new Model(this.proton)
-      this.proton.app.models[model.name] = model
       model.fileName = fileName
+      this.proton.app.models[model.name] = model
+      this.proton.log.silly('Adding the model', model.name, 'to the models obj')
       return model
     })
+    return Promise.resolve()
   }
 
   /**
@@ -51,7 +54,7 @@ class ModelsQuark extends Quark {
    * @return {Array} - All policies exported values as an array
    */
   get _models() {
-    const modelsPath = path.join(this.proton.app.path, '/models')
+    const modelsPath = path.join(this.proton.app.path, '/api/models')
     return require('require-all')(modelsPath)
   }
 
