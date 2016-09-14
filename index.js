@@ -58,6 +58,10 @@ class ModelsQuark extends Quark {
     return require('require-all')(modelsPath)
   }
 
+  get name() {
+    return 'models'
+  }
+
 }
 
 module.exports = ModelsQuark
