@@ -59,7 +59,7 @@ class ModelsQuark extends Quark {
   }
 
   get name() {
-    return 'models'
+    return 'proton-quark-models'
   }
 
 }
