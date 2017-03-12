@@ -24,9 +24,10 @@ class ModelsQuark extends Quark {
    * @author Luis Hernandez
    */
   configure() {
-    if (!this.proton.app.models)
-      this.proton.app.models = {}
-    return Promise.resolve()
+    return new Promise(resolve => {
+      if (!this.proton.app.models) this.proton.app.models = {}
+      resolve()
+    })
   }
 
   /**
@@ -36,22 +37,21 @@ class ModelsQuark extends Quark {
    * @author Luis Hernandez
    */
   initialize() {
-    _.forEach(this._models, (Model, fileName) => {
-      const model = new Model(this.proton)
-      model.fileName = fileName
-      this.proton.app.models[model.name] = model
-      this.proton.log.silly('Adding the model', model.name, 'to the models obj')
-      return model
+    return new Promise(resolve => {
+      console.log('aqui', this._models)
+      _.forEach(this._models, (Model, fileName) => {
+        const model = new Model(this.proton)
+        model.fileName = fileName
+        this.proton.app.models[model.name] = model
+        return model
+      })
+      resolve()
     })
-    return Promise.resolve()
   }
 
   /**
-   * @method controllers
-   * @description This method get the export value of each policy present
-   * in the policies folder
+   * @method _models
    * @author Luis Hernandez
-   * @return {Array} - All policies exported values as an array
    */
   get _models() {
     const modelsPath = path.join(this.proton.app.path, '/api/models')
